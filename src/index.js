@@ -17,7 +17,6 @@ const ColorPalette = (props) => {
     value,
   } = props;
   const [color, setColor] = useState(value || defaultColor);
-  
   useEffect(() => {
     value && setColor(value);
   }, [value]);
@@ -38,7 +37,7 @@ const ColorPalette = (props) => {
             icon={icon}
             onColorChange={onColorChange}
             scaleToWindow={scaleToWindow}
-            isSelected={value ? value ===c : color ===c}
+            isSelected={value ? value.includes(c) : color ===c}
           />
         ))}
       </View>
@@ -78,7 +77,7 @@ ColorPalette.propTypes = {
   title: PropTypes.string,
   onChange: PropTypes.func,
   defaultColor: PropTypes.string,
-  value: PropTypes.string,
+  value:  PropTypes.arrayOf(PropTypes.string),
   paletteStyles: PropTypes.shape({})
 };
 
